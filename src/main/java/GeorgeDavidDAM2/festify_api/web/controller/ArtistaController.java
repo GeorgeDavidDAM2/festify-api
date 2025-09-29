@@ -23,7 +23,10 @@ public class ArtistaController {
     public ArtistaController() {  //Creamos un constructor para inicializar la lista de artistas pero es conmutable
         this.artists = new ArrayList<>();
         this.artists.add(
-            new ArtistResponse("ART-001","Bad Bunny", "Pop","España")
+            new ArtistResponse("ART-1","Bad Bunny", "Pop","España")
+        );
+        this.artists.add(
+            new ArtistResponse("ART-2","Box Bunny", "Dibujos","USA")
         );
     }
 
@@ -32,16 +35,38 @@ public class ArtistaController {
     public List<ArtistResponse> listArtists() {
         return artists;
     }
-   
+    /* 
+   @GetMapping(path="/artists/{id}")  // Mapea las solicitudes GET a /artists/{id} , es decir, cuando alguien acceda a /artists/ART-001 se ejecutará este método
+   public ArtistResponse getArtistById(@PathVariable String id) { // PathVariable indica que el valor de id se obtiene de la URL
+        return artists.stream() // Stream es una secuencia de elementos que se pueden procesar de manera funcional
+            .filter(artist -> artist.id().equals(id)) // Filtra los artistas que tienen el id igual al id pasado por la URL
+            .findFirst() // Devuelve el primer artista que cumple la condición del filtro
+            .orElseThrow(() -> new RuntimeException("Artist not found")); // Si no encuentra ningún artista, lanza una excepción
+    }
+    */
+    /* 
+    @GetMapping(path="/artists/{id}")  // Mapea las solicitudes GET a /artists/{id} , es decir, cuando alguien acceda a /artists/ART-001 se ejecutará este método
+    public ArtistResponse getArtistById(@PathVariable String id) { // PathVariable indica que el valor de id se obtiene de la URL
+        for (ArtistResponse artist : artists) { // Recorre la lista de artistas
+            if (artist.id().equals(id)) { // Si el id del artista es igual al id pasado por la URL
+                return artist; // Devuelve el artista
+            }
+        }
+        return null; // Si no encuentra ningún artista, devuelve null 
+    }
+    */
     @PostMapping(path="/artists")  // Mapea las solicitudes POST a /artists , es decir, cuando alguien acceda a /artists se ejecutará este método
     public List<ArtistResponse> createArtist(@RequestBody CreateArtistRequest request) {
+        String id="ART-" + (artists.size()+1); //sumamos 1 al tamaño de la lista para que el id sea unico
         ArtistResponse artist = new ArtistResponse(
-            request.id(),
+            id, //aqui pongo el id que he creado arriba
             request.name(), 
             request.genre(),
             request.country()
         );
+        
         artists.add(artist);
+
         return artists;
         //he encontrado un metodo request, que seriviria para crear un artista con los datos que le pasas
         //luego en el postman debemos ir al body e introducir los parametros en tipo json
