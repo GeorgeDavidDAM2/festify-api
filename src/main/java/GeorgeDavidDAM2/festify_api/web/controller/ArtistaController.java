@@ -30,5 +30,9 @@ public class ArtistaController {
         return artists;
     }
    
-    
+    @PostMapping(path="/artists")  // Mapea las solicitudes POST a /artists , es decir, cuando alguien acceda a /artists se ejecutará este método
+    public List<ArtistResponse> createArtist() {
+        new ArtistResponse();
+        return artists;
+    }
 }
