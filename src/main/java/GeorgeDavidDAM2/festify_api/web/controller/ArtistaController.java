@@ -14,7 +14,8 @@ import GeorgeDavidDAM2.festify_api.dto.response.ArtistResponse;
 public class ArtistaController {
 
     private List<ArtistResponse> artists = List.of(
-        new ArtistResponse("ART-001", "Bad bunny", "Trap", "Puerto Rico") // Lista para almacenar los artistas inmutables
+        new ArtistResponse("ART-001", "Bad bunny", "Trap", "Puerto Rico"), // Lista para almacenar los artistas inmutables
+        new ArtistResponse("ART-002", "Kid Keo", "Trap", "España") 
     ); 
     /* 
     private List<ArtistResponse> artists;
@@ -30,9 +31,11 @@ public class ArtistaController {
         return artists;
     }
    
-    @PostMapping(path="/artists")  // Mapea las solicitudes POST a /artists , es decir, cuando alguien acceda a /artists se ejecutará este método
-    public List<ArtistResponse> createArtist() {
-        new ArtistResponse();
-        return artists;
+    @GetMapping("/artists/{id}")
+    public ArtistResponse getArtistById(@PathVariable String id) {
+        return artists.stream()
+                .filter(a -> a.id().equals(id))
+                .findFirst()
+                .orElse(null); // o lanzar un 404
     }
-}
+    }
