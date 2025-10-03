@@ -1,6 +1,8 @@
 package GeorgeDavidDAM2.festify_api.dto.request;
 
-public record CreateArtistRequest(String id, String name, String genre, String country){
+import java.util.List;
+
+public record CreateArtistRequest(String id, String name, List<String> genre, long oyentes, String country,
+        int festivales) {
 
 }
-
