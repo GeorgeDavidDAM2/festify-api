@@ -23,10 +23,10 @@ public class ArtistaController {
     public ArtistaController() {  //Creamos un constructor para inicializar la lista de artistas pero es conmutable
         this.artists = new ArrayList<>();
         this.artists.add(
-            new ArtistResponse("ART-1","Bad Bunny", "Pop","España")
+            new ArtistResponse("ART-1","Bad Bunny", new String[]{"Pop","Trap"},"España",1000000, 25,"Activo")
         );
         this.artists.add(
-            new ArtistResponse("ART-2","Box Bunny", "Dibujos","USA")
+            new ArtistResponse("ART-2","Box Bunny", new String[]{"Dibujos"},"USA",500000, 10,"Inactivo")
         );
     }
 
@@ -62,7 +62,10 @@ public class ArtistaController {
             id, //aqui pongo el id que he creado arriba
             request.name(), 
             request.genre(),
-            request.country()
+            request.country(),
+            request.oyentes(),
+            request.festivales(),
+            request.estado()
         );
         
         artists.add(artist);
