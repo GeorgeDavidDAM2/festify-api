@@ -74,7 +74,7 @@ public class ArtistaController{ // Implementa la interfaz ArtistService
             request.festivales(),
             request.estado()
         );
-        
+
         artistService.listArtists().add(artist);
 
         return artistService.listArtists(); // Devuelve la lista de artistas actualizada
