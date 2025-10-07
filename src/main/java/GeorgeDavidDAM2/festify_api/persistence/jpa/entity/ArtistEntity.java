@@ -1,4 +1,4 @@
-package GeorgeDavidDAM2.festify_api.api.persistence.jpa.entity;
+package GeorgeDavidDAM2.festify_api.persistence.jpa.entity;
 
 import jakarta.persistence.*;
 
