@@ -5,15 +5,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import GeorgeDavidDAM2.Service.ArtistService;
 import GeorgeDavidDAM2.festify_api.dto.response.ArtistResponse;
+import GeorgeDavidDAM2.festify_api.service.ArtistService;
 
 @RestController // Indica que esta clase es un controlador REST
 public class ArtistaController {
     private ArtistService artistService;
 
     @Autowired
-
     public ArtistaController(ArtistService artistService) {
         this.artistService = artistService;
     }

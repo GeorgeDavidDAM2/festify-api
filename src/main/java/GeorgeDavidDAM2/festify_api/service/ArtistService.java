@@ -1,4 +1,4 @@
-package GeorgeDavidDAM2.Service;
+package GeorgeDavidDAM2.festify_api.service;
 
 import java.util.List;
 
