@@ -10,7 +10,8 @@ import GeorgeDavidDAM2.festify_api.service.ArtistService;
 
 @RestController // Indica que esta clase es un controlador REST
 public class ArtistaController {
-    private ArtistService artistService;
+    
+    final private ArtistService artistService;
 
     @Autowired
     public ArtistaController(ArtistService artistService) {
