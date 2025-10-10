@@ -1,6 +1,8 @@
 package GeorgeDavidDAM2.festify_api.web.controller;
 
 import java.util.List;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +16,7 @@ import GeorgeDavidDAM2.festify_api.dto.response.ArtistResponse;
 import GeorgeDavidDAM2.festify_api.service.ArtistService;
 import jakarta.validation.Valid;
 
+@CrossOrigin(origins = "*")
 
 @RestController // Indica que esta clase es un controlador REST
 public class ArtistaController {
