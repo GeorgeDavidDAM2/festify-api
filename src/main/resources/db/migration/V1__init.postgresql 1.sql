@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS artists (
     country    VARCHAR(2)   NOT NULL,                 -- ES, US, GB, etc.
     listeners  INTEGER,                      -- oyentes mensuales
     status     VARCHAR(32)  NOT NULL DEFAULT 'Activo',
+    biography  VARCHAR(2000),
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
     CONSTRAINT artists_status_ck CHECK (status IN ('Activo','Borrador'))
@@ -126,3 +127,4 @@ INSERT INTO artists (name, genres, country, listeners, status) VALUES
    ('Louis Tomlinson', ARRAY['Pop']::TEXT[], 'GB', 7000000, 'Activo'),
    ('OneRepublic', ARRAY['Pop Rock']::TEXT[], 'US', 25000000, 'Activo'),
    ('Maroon 5', ARRAY['Pop Rock']::TEXT[], 'US', 78000000, 'Activo');
+ 

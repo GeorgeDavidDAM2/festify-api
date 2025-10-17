@@ -37,8 +37,20 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public ArtistResponse createArtist(CreateArtistRequest request) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createArtist'");
-    }
+        ArtistEntity artist = ArtistMapper.CreateArtistRequestToArtistEntity(request);
+        ArtistEntity artistCreated = this.artistJpaRepository.save(artist);
+        return ArtistMapper.ArtistsToArtisResume(artistCreated);
 
+    }
+    /*
+     * @Override
+     * public ArtistResponse updateArtist(String id, CreateArtistRequest request) {
+     * 
+     * }
+     * 
+     * @Override
+     * public ArtistResponse getArtistById(String id) {
+     * 
+     * }
+     */
 }

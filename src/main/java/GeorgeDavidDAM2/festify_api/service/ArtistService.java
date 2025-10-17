@@ -10,4 +10,8 @@ public interface ArtistService {
 
     ArtistResponse createArtist(CreateArtistRequest request);
 
+    // ArtistResponse updateArtist(String id, CreateArtistRequest request);
+
+    // ArtistResponse getArtistById(String id);
+
 }
