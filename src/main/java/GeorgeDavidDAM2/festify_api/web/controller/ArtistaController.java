@@ -3,7 +3,9 @@ package GeorgeDavidDAM2.festify_api.web.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -32,6 +34,16 @@ public class ArtistaController {
                                    // /artists se ejecutará este método
     public List<ArtistResponse> listArtists() {
         return artistService.listArtists();
+    }
+
+    @GetMapping(path = "/artists/{id}")
+    public ArtistResponse getArtistById(@PathVariable String id) {
+        return artistService.getArtistById(id);
+    }
+
+    @DeleteMapping(path = "/artists/{id}")
+    public void deleteArtistById (@PathVariable String id) {
+        artistService.deleteArtistById(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)

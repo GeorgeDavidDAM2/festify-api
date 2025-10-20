@@ -1,9 +1,9 @@
 package GeorgeDavidDAM2.festify_api.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +19,11 @@ public class ArtistServiceImpl implements ArtistService {
 
     final private ArtistJpaRepository artistJpaRepository;
 
-    // private static final Logger logger =
-    // LoggerFactory.getLogger(ArtistServiceImpl.class);
+    private Long parseArtistId(String strId) {
+        strId = strId.trim().replace("ART-","");
+        Long id = Integer.valueOf(strId).longValue();
+        return id;
+    }
 
     @Autowired
     public ArtistServiceImpl(ArtistJpaRepository artistRepository) {
@@ -30,7 +33,6 @@ public class ArtistServiceImpl implements ArtistService {
     @Override
     public List<ArtistResponse> listArtists() {
         List<ArtistEntity> artists = this.artistJpaRepository.findAll();
-        // artists.stream().forEach(a -> logger.info(a.getName()));
         return artists.stream().map(ArtistMapper::ArtistsToArtisResume).toList();
 
     }
@@ -42,6 +44,19 @@ public class ArtistServiceImpl implements ArtistService {
         return ArtistMapper.ArtistsToArtisResume(artistCreated);
 
     }
+
+    public ArtistResponse getArtistById(String puId) {
+        Long id = parseArtistId(puId);
+        Optional<ArtistEntity> artistEntity = this.artistJpaRepository.findById(id);
+        return ArtistMapper.ArtistsToArtisResume(artistEntity.get());
+    }
+
+    public void deleteArtistById (String puId) {
+        Long id = parseArtistId(puId);
+        this.artistJpaRepository.deleteById(id);
+    }
+
+    
     /*
      * @Override
      * public ArtistResponse updateArtist(String id, CreateArtistRequest request) {

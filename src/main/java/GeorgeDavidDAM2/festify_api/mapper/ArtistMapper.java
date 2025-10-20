@@ -10,9 +10,12 @@ public class ArtistMapper {
         return new ArtistResponse(
                 "ART-" + artistEntity.getId(),
                 artistEntity.getName(),
-                artistEntity.getCountry(),
                 artistEntity.getGenres(),
-                artistEntity.getListeners());
+                artistEntity.getCountry(),
+                artistEntity.getListeners(),
+                artistEntity.getStatus(),
+                artistEntity.getBiography());
+                
     }
 
     public static ArtistEntity CreateArtistRequestToArtistEntity(CreateArtistRequest request) {
@@ -21,10 +24,9 @@ public class ArtistMapper {
         artistEntity.setGenres(request.genres());
         artistEntity.setCountry(request.country());
         artistEntity.setListeners((int) request.listeners());
-        /*
-         * artistEntity.setEstado(request.estado());
-         * artistEntity.setBiografia(request.biografia());
-         */
+        artistEntity.setStatus(request.status());
+        artistEntity.setBiography(request.biography());
+
         return artistEntity;
     }
 }
