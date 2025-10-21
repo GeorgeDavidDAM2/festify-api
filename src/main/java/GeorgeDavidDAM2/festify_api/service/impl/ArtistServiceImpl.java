@@ -12,6 +12,7 @@ import GeorgeDavidDAM2.festify_api.mapper.ArtistMapper;
 import GeorgeDavidDAM2.festify_api.persistence.jpa.entity.ArtistEntity;
 import GeorgeDavidDAM2.festify_api.persistence.jpa.entity.repository.ArtistJpaRepository;
 import GeorgeDavidDAM2.festify_api.service.ArtistService;
+import GeorgeDavidDAM2.festify_api.utils.exceptions.InvalidIdException;
 
 @Service
 public class ArtistServiceImpl implements ArtistService {
@@ -44,15 +45,21 @@ public class ArtistServiceImpl implements ArtistService {
 
     }
 
-    public ArtistResponse getArtistById(String puId) {
-        Long id = parseArtistId(puId);
+    public ArtistResponse getArtistById(String pubId) {
+        Long id = parseArtistId(pubId);
         Optional<ArtistEntity> artistEntity = this.artistJpaRepository.findById(id);
         return ArtistMapper.ArtistsToArtisResume(artistEntity.get());
     }
 
-    public void deleteArtistById(String puId) {
-        Long id = parseArtistId(puId);
+    public void deleteArtistById(String pubId) {
+        Long id = parseArtistId(pubId);
+
+        if (!this.artistJpaRepository.existsById(id)) {
+        throw new InvalidIdException("Artista con el id " + pubId + " no existe.");
+        }
+
         this.artistJpaRepository.deleteById(id);
+        
     }
 
     /*

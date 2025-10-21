@@ -2,6 +2,7 @@ package GeorgeDavidDAM2.festify_api.mapper;
 
 import GeorgeDavidDAM2.festify_api.dto.request.CreateArtistRequest;
 import GeorgeDavidDAM2.festify_api.dto.response.ArtistResponse;
+import GeorgeDavidDAM2.festify_api.dto.response.ArtistsDetailResponse;
 import GeorgeDavidDAM2.festify_api.persistence.jpa.entity.ArtistEntity;
 
 public class ArtistMapper {
@@ -13,10 +14,21 @@ public class ArtistMapper {
                 artistEntity.getGenres(),
                 artistEntity.getCountry(),
                 artistEntity.getListeners(),
-                artistEntity.getStatus(),
-                artistEntity.getBiography());
-                
+                artistEntity.getStatus());
     }
+
+    public static ArtistsDetailResponse ArtistsDetailResponse(ArtistEntity artistEntity) {
+        return new ArtistsDetailResponse(
+                "ART-" + artistEntity.getId(),
+                artistEntity.getName(),
+                artistEntity.getGenres(),
+                artistEntity.getCountry(),
+                artistEntity.getListeners(),
+                artistEntity.getStatus(),
+                artistEntity.getBiography());          
+    }
+    
+    
 
     public static ArtistEntity CreateArtistRequestToArtistEntity(CreateArtistRequest request) {
         ArtistEntity artistEntity = new ArtistEntity();
