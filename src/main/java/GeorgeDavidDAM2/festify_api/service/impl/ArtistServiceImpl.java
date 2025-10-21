@@ -3,7 +3,6 @@ package GeorgeDavidDAM2.festify_api.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +19,7 @@ public class ArtistServiceImpl implements ArtistService {
     final private ArtistJpaRepository artistJpaRepository;
 
     private Long parseArtistId(String strId) {
-        strId = strId.trim().replace("ART-","");
+        strId = strId.trim().replace("ART-", "");
         Long id = Integer.valueOf(strId).longValue();
         return id;
     }
@@ -51,20 +50,14 @@ public class ArtistServiceImpl implements ArtistService {
         return ArtistMapper.ArtistsToArtisResume(artistEntity.get());
     }
 
-    public void deleteArtistById (String puId) {
+    public void deleteArtistById(String puId) {
         Long id = parseArtistId(puId);
         this.artistJpaRepository.deleteById(id);
     }
 
-    
     /*
      * @Override
      * public ArtistResponse updateArtist(String id, CreateArtistRequest request) {
-     * 
-     * }
-     * 
-     * @Override
-     * public ArtistResponse getArtistById(String id) {
      * 
      * }
      */

@@ -30,6 +30,12 @@ public class ArtistaController {
         this.artistService = artistService;
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/artists")
+    public ArtistResponse createArtist(@Valid @RequestBody CreateArtistRequest request) {
+        return this.artistService.createArtist(request);
+    }
+
     @GetMapping(path = "/artists") // Mapea las solicitudes GET a /artists , es decir, cuando alguien acceda a
                                    // /artists se ejecutará este método
     public List<ArtistResponse> listArtists() {
@@ -42,13 +48,8 @@ public class ArtistaController {
     }
 
     @DeleteMapping(path = "/artists/{id}")
-    public void deleteArtistById (@PathVariable String id) {
+    public void deleteArtistById(@PathVariable String id) {
         artistService.deleteArtistById(id);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/artists")
-    public ArtistResponse createArtist(@Valid @RequestBody CreateArtistRequest request) {
-        return this.artistService.createArtist(request);
-    }
 }
