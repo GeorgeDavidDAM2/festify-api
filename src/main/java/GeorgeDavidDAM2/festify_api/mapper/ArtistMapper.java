@@ -25,10 +25,8 @@ public class ArtistMapper {
                 artistEntity.getCountry(),
                 artistEntity.getListeners(),
                 artistEntity.getStatus(),
-                artistEntity.getBiography());          
+                artistEntity.getBiography());
     }
-    
-    
 
     public static ArtistEntity CreateArtistRequestToArtistEntity(CreateArtistRequest request) {
         ArtistEntity artistEntity = new ArtistEntity();
