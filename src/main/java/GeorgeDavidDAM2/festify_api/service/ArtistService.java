@@ -12,10 +12,8 @@ public interface ArtistService {
 
     ArtistResponse getArtistById(String id);
 
-    void deleteArtistById (String id);
+    void deleteArtistById(String id);
 
     // ArtistResponse updateArtist(String id, CreateArtistRequest request);
-
-    
 
 }

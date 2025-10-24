@@ -12,6 +12,7 @@ import GeorgeDavidDAM2.festify_api.mapper.ArtistMapper;
 import GeorgeDavidDAM2.festify_api.persistence.jpa.entity.ArtistEntity;
 import GeorgeDavidDAM2.festify_api.persistence.jpa.entity.repository.ArtistJpaRepository;
 import GeorgeDavidDAM2.festify_api.service.ArtistService;
+import GeorgeDavidDAM2.festify_api.utils.exceptions.InvalidFormatIdException;
 import GeorgeDavidDAM2.festify_api.utils.exceptions.InvalidIdException;
 
 @Service
@@ -20,9 +21,15 @@ public class ArtistServiceImpl implements ArtistService {
     final private ArtistJpaRepository artistJpaRepository;
 
     private Long parseArtistId(String strId) {
-        strId = strId.trim().replace("ART-", "");
-        Long id = Integer.valueOf(strId).longValue();
-        return id;
+
+        try {
+            strId = strId.trim().replace("ART-", "");
+            Long id = Integer.valueOf(strId).longValue();
+            return id;
+        } catch (Exception e) {
+            throw new InvalidFormatIdException("El formato del id " + strId + " no es valido.");
+        }
+
     }
 
     @Autowired
@@ -55,11 +62,11 @@ public class ArtistServiceImpl implements ArtistService {
         Long id = parseArtistId(pubId);
 
         if (!this.artistJpaRepository.existsById(id)) {
-        throw new InvalidIdException("Artista con el id " + pubId + " no existe.");
+            throw new InvalidIdException("Artista con el id " + pubId + " no existe.");
         }
 
         this.artistJpaRepository.deleteById(id);
-        
+
     }
 
     /*
