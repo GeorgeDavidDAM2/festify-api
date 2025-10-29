@@ -69,10 +69,10 @@ public class ArtistServiceImpl implements ArtistService {
 
     }
 
-    /*
-     * @Override
-     * public ArtistResponse updateArtist(String id, CreateArtistRequest request) {
-     * 
-     * }
-     */
+    @Override
+    public ArtistResponse updateArtist(String id, CreateArtistRequest request) {
+        return ArtistMapper.ArtistsToArtisResume(artistEntity.update());
+
+    }
+
 }
