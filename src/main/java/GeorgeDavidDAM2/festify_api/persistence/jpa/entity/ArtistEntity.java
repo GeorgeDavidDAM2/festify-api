@@ -36,9 +36,9 @@ public class ArtistEntity {
 
     public ArtistEntity() {
     }
-    
-    
-    public ArtistEntity(Long id, String name, List<String> genres, String country, Integer listeners, String status, String biography) {
+
+    public ArtistEntity(Long id, String name, List<String> genres, String country, Integer listeners, String status,
+            String biography) {
         this.id = id;
         this.name = name;
         this.genres = genres;
@@ -116,6 +116,6 @@ public class ArtistEntity {
     }
 
     public void setBiography(String biography) {
-    this.biography = biography;
-   }
+        this.biography = biography;
+    }
 }
