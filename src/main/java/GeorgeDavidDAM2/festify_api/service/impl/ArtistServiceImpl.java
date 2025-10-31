@@ -68,11 +68,11 @@ public class ArtistServiceImpl implements ArtistService {
         this.artistJpaRepository.deleteById(id);
 
     }
-
-    @Override
-    public ArtistResponse updateArtist(String id, CreateArtistRequest request) {
-        return ArtistMapper.ArtistsToArtisResume(artistEntity.update());
-
-    }
-
+    /*
+     * @Override
+     * public ArtistResponse updateArtist(String id, CreateArtistRequest request) {
+     * return ArtistMapper.ArtistsToArtisResume(artistEntity.update());
+     * 
+     * }
+     */
 }
