@@ -4,6 +4,6 @@ import java.util.List;
 
 import GeorgeDavidDAM2.festify_api.dto.response.AlbumResponse;
 
-public class AlbumService {
+public interface AlbumService {
     List<AlbumResponse> listAlbums(Long id);
 }
