@@ -74,7 +74,7 @@ public class ArtistServiceImpl implements ArtistService {
         long id = parseArtistId(puId);
 
         ArtistEntity artistToUpdate = artistJpaRepository.findById(id)
-                .orElseThrow(() -> new InvalidIdException("El artist no existe"));
+                .orElseThrow(() -> new InvalidIdException("El artista no existe"));
 
         // Si no usara los if, estaría forzando una actualización completa
         // (PUT), donde el frontend tendría que enviar todos los campos del
