@@ -68,11 +68,45 @@ public class ArtistServiceImpl implements ArtistService {
         this.artistJpaRepository.deleteById(id);
 
     }
-    /*
-     * @Override
-     * public ArtistResponse updateArtist(String id, CreateArtistRequest request) {
-     * return ArtistMapper.ArtistsToArtisResume(artistEntity.update());
-     * 
-     * }
-     */
+
+    @Override
+    public ArtistResponse updateArtist(String puId, CreateArtistRequest request) {
+        long id = parseArtistId(puId);
+
+        ArtistEntity artistToUpdate = artistJpaRepository.findById(id)
+                .orElseThrow(() -> new InvalidIdException("El artist no existe"));
+
+        // Si no usara los if, estaría forzando una actualización completa
+        // (PUT), donde el frontend tendría que enviar todos los campos del
+        // artista, incluyendo los que no se modificaron.
+
+        if (request.name() != null && !request.name().trim().isEmpty()) {
+            artistToUpdate.setName(request.name());
+        }
+
+        if (request.genres() != null && !request.genres().isEmpty()) {
+            artistToUpdate.setGenres(request.genres());
+        }
+
+        if (request.country() != null && !request.country().isEmpty()) {
+            artistToUpdate.setCountry(request.country());
+        }
+
+        if (request.biography() != null && !request.biography().isEmpty()) {
+            artistToUpdate.setBiography(request.biography());
+        }
+
+        if (request.status() != null && !request.status().isEmpty()) {
+            artistToUpdate.setStatus(request.status());
+        }
+
+        if (request.listeners() != null) {
+            artistToUpdate.setListeners(request.listeners().intValue());
+        }
+
+        ArtistEntity updatedArtist = artistJpaRepository.save(artistToUpdate);
+
+        // Mapear la entidad actualizada a la respuesta y devolver
+        return ArtistMapper.ArtistsToArtisResume(updatedArtist);
+    }
 }

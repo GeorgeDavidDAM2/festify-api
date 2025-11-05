@@ -33,7 +33,7 @@ public class ArtistMapper {
         artistEntity.setName(request.name());
         artistEntity.setGenres(request.genres());
         artistEntity.setCountry(request.country());
-        artistEntity.setListeners((int) request.listeners());
+        artistEntity.setListeners(request.listeners().intValue());
         artistEntity.setStatus(request.status());
         artistEntity.setBiography(request.biography());
 
