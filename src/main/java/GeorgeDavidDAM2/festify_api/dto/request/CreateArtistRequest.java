@@ -23,7 +23,7 @@ public record CreateArtistRequest(
 
         @NotNull(message = "El número de oyentes es obligatorio") 
         @PositiveOrZero(message = "El número de oyentes debe ser un valor positivo o cero") 
-        long listeners,
+        Long listeners,
 
         @NotBlank(message = "El estado es obligatorio") 
         String status,

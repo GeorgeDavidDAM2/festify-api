@@ -34,4 +34,17 @@ public class AlbumServiceImpl implements AlbumService {
         this.albumJpaRepository = albumJpaRepository;
     }
 
+    public AlbumResponse getAlbumsById(Long id) {
+        AlbumResponse albumEntity = albumJpaRepository.findById(id)
+                .map(album -> new AlbumResponse(
+                        album.getId(),
+                        album.getArtistId(),
+                        album.getTitle(),
+                        album.getReleaseDate(),
+                        album.getTracksCount(),
+                        album.getDurationSeconds()))
+                .orElse(null);
+        return albumEntity;
+    }
+
 }

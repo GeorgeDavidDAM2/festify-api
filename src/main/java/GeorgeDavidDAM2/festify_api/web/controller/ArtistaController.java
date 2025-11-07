@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,8 +37,7 @@ public class ArtistaController {
         return this.artistService.createArtist(request);
     }
 
-    @GetMapping(path = "/artists") // Mapea las solicitudes GET a /artists , es decir, cuando alguien acceda a
-                                   // /artists se ejecutará este método
+    @GetMapping(path = "/artists")
     public List<ArtistResponse> listArtists() {
         return artistService.listArtists();
     }
@@ -50,6 +50,11 @@ public class ArtistaController {
     @DeleteMapping(path = "/artists/{id}")
     public void deleteArtistById(@PathVariable String id) {
         artistService.deleteArtistById(id);
+    }
+
+    @PatchMapping(path = "/artists/{id}")
+    public ArtistResponse updateArtist(@PathVariable String id, @Valid @RequestBody CreateArtistRequest request) {
+        return artistService.updateArtist(id, request);
     }
 
 }
