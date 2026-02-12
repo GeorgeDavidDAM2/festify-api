@@ -1,0 +1,3 @@
+Con la extension postgres
+    hacemos ctrl+shift+p y añadimos conexion
+    
